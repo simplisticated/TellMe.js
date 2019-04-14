@@ -13,7 +13,7 @@
 
 ## How to Get Started
 
-Documentation will be added soon.
+Copy the [source/tellme.js](source/tellme.js) file to your project.
 
 ## Requirements
 
