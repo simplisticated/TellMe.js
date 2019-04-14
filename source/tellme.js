@@ -51,9 +51,12 @@ class Speaker {
 				speech.pitch = 1; //0 to 2
 				speech.text = text;
 				speech.lang = speaker._language;
-				speech.onend = function(event) {
-					callback();
-				};
+				
+				if (callback) {
+					speech.onend = function(event) {
+						callback();
+					};
+				}
 
 				window.speechSynthesis.speak(speech);
 			}
@@ -62,5 +65,5 @@ class Speaker {
 }
 
 function tellMeIn(language) {
-	return Speaker(language);
+	return new Speaker(language);
 }
