@@ -17,11 +17,31 @@ Documentation will be added soon.
 
 ## Requirements
 
-Documentation will be added soon.
+No special requirements.
 
 ## Usage
 
-Documentation will be added soon.
+The very basic usage looks like the example below:
+
+```javascript
+tellMeIn("en-US").say(
+    "Hello! How are you doing?"
+)
+```
+
+Everything starts with `tellMeIn()` method that takes the only string parameter which is a locale identifier of your text: `en-US`, `fr-FR`, `ru-RU`, etc.
+
+Also, the library can notify you when it finished speaking:
+
+```javascript
+tellMeIn("en-US")
+    .say(
+        "Hello! How are you doing?"
+    )
+    .onFinished(function() {
+        console.log("Finished");
+    });
+```
 
 ## License
 
