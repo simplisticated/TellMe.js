@@ -11,6 +11,13 @@ class StateChecker {
 
 class Speaker {
 
+	_onFinishedCallback = null;
+
+	onFinished(callback) {
+		this._onFinishedCallback = callback;
+		return this;
+	}
+
 	constructor(language) {
 		this._language = language;
 	}
@@ -39,7 +46,7 @@ class Speaker {
 		return availableVoices[0];
 	}
 
-	say(text, callback) {
+	say(text) {
 		var speaker = this;
 		speaker._loadVoices(
 			function() {
@@ -51,16 +58,17 @@ class Speaker {
 				speech.pitch = 1; //0 to 2
 				speech.text = text;
 				speech.lang = speaker._language;
-				
-				if (callback) {
+
+				if (speaker._onFinishedCallback) {
 					speech.onend = function(event) {
-						callback();
+						speaker._onFinishedCallback();
 					};
 				}
 
 				window.speechSynthesis.speak(speech);
 			}
 		);
+		return speaker;
 	}
 }
 
